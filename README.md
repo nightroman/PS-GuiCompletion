@@ -39,4 +39,4 @@ You'll want to add these configuration commands to your PowerShell profile.  Oth
 
 ## See also
 
-- [Release-Notes](https://github.com/nightroman/PS-GuiCompletion/Release-Notes.md)
+- [GuiCompletion Release Notes](https://github.com/nightroman/PS-GuiCompletion/blob/main/Release-Notes.md)

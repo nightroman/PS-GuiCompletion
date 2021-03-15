@@ -1,4 +1,4 @@
-# GuiCompletion
+# GuiCompletion Release Notes
 
 ## v0.9.0 (coming soon)
 
