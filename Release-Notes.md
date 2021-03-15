@@ -2,6 +2,10 @@
 
 ## v0.9.0 (coming soon)
 
+This release is the result of many performance improvement and design changes
+made rather long time ago. Now they are difficult to explain in user friendly
+form. The below lists are just commit summaries.
+
 **Part1**
 
 - Use top and bottom margins
