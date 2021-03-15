@@ -12,7 +12,7 @@ function Install-GuiCompletion($Key = 'Ctrl+Spacebar') {
 
 function Invoke-GuiCompletion {
 	for() {
-		# get input buffer state from PSReadLine
+		# get input buffer state
 		$buffer = ''
 		$cursorPosition = 0
 		[Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$buffer, [ref]$cursorPosition)
@@ -20,21 +20,21 @@ function Invoke-GuiCompletion {
 			return
 		}
 
-		# get list of completion items
+		# get completion items
 		$completion = TabExpansion2 $buffer $cursorPosition
 		if (!$completion.CompletionMatches) {
 			return
 		}
 
 		# show the menu
-		$recurse = $false
-		$replacement = Get-ConsoleList -Content $completion.CompletionMatches -Recurse ([ref]$recurse)
+		$Repeat = $false
+		$replacement = Get-ConsoleList -Content $completion.CompletionMatches -Repeat ([ref]$Repeat)
 
-		# based on return value, apply the completion to the buffer state
+		# apply the completion
 		if ($replacement) {
 			[Microsoft.PowerShell.PSConsoleReadLine]::Replace($completion.ReplacementIndex, $completion.ReplacementLength, $replacement)
 		}
-		if (!$recurse) {
+		if (!$Repeat) {
 			break
 		}
 	}

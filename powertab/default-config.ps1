@@ -11,16 +11,19 @@ $GuiCompletionConfig = @{
 		FilterColor = 'DarkMagenta'
 	}
 
-	AutoReturnSingle = $true
+	DoubleBorder = $true
 	MinimumTextWidth = 25
 	FastScrollItemCount = 10
+	AutoReturnSingle = $true
+
 	DotComplete = $true
 	AutoExpandOnDot = $true
+
 	BackSlashComplete = $true
 	AutoExpandOnBackSlash = $true
-	SpaceComplete = $true
-	CustomCompletionChars = ']:)'
-	CustomComplete = $true
 
-	DoubleBorder = $true
+	CustomComplete = $true
+	CustomCompletionChars = '()[]:'
+
+	SpaceComplete = $true
 }

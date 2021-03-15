@@ -1,9 +1,10 @@
 # GuiCompletion Release Notes
 
-## v0.9.0 (coming soon)
+## v0.9.0
 
-This release contains many performance improvements and design changes made
-long time ago, difficult to explain in user friendly form. Commit summaries:
+This release contains changes made long time ago, now difficult to explain in
+user friendly form. Most prominent: performance improvements, inferred common
+prefix, fuzzy filter.
 
 **Part1**
 
@@ -15,7 +16,6 @@ long time ago, difficult to explain in user friendly form. Commit summaries:
 - Replace `New-Box` property bag with variables, comment out not used
 - Remove not used `$HasChild` and fix not initialized error
 - Fix `Right Arrow` wrong index and out-of-range
-- Treat `*` and `?` in filter as wildcards
 - Fix strict mode failures
 - Use `ShiftPressed` flag, remove not used `Get-KeyState`
 - Cache `$Colors` for faster access and shorter code
@@ -24,7 +24,7 @@ long time ago, difficult to explain in user friendly form. Commit summaries:
 
 **Part2**
 
-- Use `ListItemText` for list, remove some preview stuff, use different filter
+- Use `ListItemText` for list, remove some preview stuff
 - Retire `CloseListOnEmptyFilter`, `Right/Left Arrow`
 - Remove `LastWord` from `Select-Item`
 - Fix `Backspace`, remove not used `$OldFilter`
@@ -39,6 +39,8 @@ long time ago, difficult to explain in user friendly form. Commit summaries:
 - Simplify `Above` / `Below`
 - Remove not used `TabExpansionUtil.ps1`
 - Remove `HelpInfoURI` from the manifest, problem for `Update-Help`
+- Settings: replace `MinimumListItems` with `AutoReturnSingle`
+- Use fuzzy filter with exact matches followed by fuzzy
 
 ## v0.8.1
 

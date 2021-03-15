@@ -1,12 +1,12 @@
 # GuiCompletion for PowerShell
 
-This enables a GUI-style tab-completion menu for PowerShell. It integrates with
-PSReadLine which comes installed in PowerShell by default, and the GUI code is
-lifted straight from PowerTab.
+GUI-style tab-completion menu for PowerShell. It integrates with PSReadLine
+which comes installed in PowerShell, and the GUI code is lifted from PowerTab.
 
-This repository clones and continues the original [PS-GuiCompletion](https://github.com/cspotcode/PS-GuiCompletion) by [@cspotcode](https://github.com/cspotcode).
-The published module is the same [GuiCompletion](https://www.powershellgallery.com/packages/GuiCompletion).
-It is developed here starting from v0.9.0 (coming soon).
+This repository clones and continues the original [PS-GuiCompletion](https://github.com/cspotcode/PS-GuiCompletion)
+created by [@cspotcode](https://github.com/cspotcode).
+The same module [GuiCompletion](https://www.powershellgallery.com/packages/GuiCompletion)
+is developed here starting from v0.9.0.
 
 **Screenshots**
 
@@ -19,27 +19,29 @@ It is developed here starting from v0.9.0 (coming soon).
 
 ## Installation
 
-Install from the PowerShell Gallery. ([GuiCompletion's Gallery page](https://www.powershellgallery.com/packages/GuiCompletion))
+Install from the PowerShell Gallery ([GuiCompletion Gallery page](https://www.powershellgallery.com/packages/GuiCompletion)):
 
     Install-Module -Name GuiCompletion -Scope CurrentUser
 
-*You can omit `-Scope` but I use it to avoid requiring Administrator permissions.*
+Omit `-Scope` to install for all users if you have administrator permissions.
 
 ## Usage
 
-Register it with the default Ctrl+Spacebar key shortcut:
+Use with the default <kbd>Ctrl+Spacebar</kbd> key shortcut:
 
     Install-GuiCompletion
 
-...or with another key shortcut:
+or with another key shortcut:
 
     Install-GuiCompletion -Key Tab
 
-`Install-GuiCompletion` is a one-line helper that wrap PSReadLine's [`Set-PSReadLineKeyHandler` cmdlet](https://github.com/lzybkr/PSReadLine#usage).  For more advanced scenarios, you can call the relevant PSReadLine commands directly:
+`Install-GuiCompletion` wraps PSReadLine's [Set-PSReadLineKeyHandler](https://github.com/lzybkr/PSReadLine#usage).
+For more advanced scenarios, you can call the relevant PSReadLine commands directly:
 
     Set-PSReadlineKeyHandler -Key Alt+Spacebar -ScriptBlock { Invoke-GuiCompletion }
 
-You'll want to add these configuration commands to your PowerShell profile.  Otherwise your configuration will not be applied to new PowerShell sessions.
+Add these configuration commands to your PowerShell profile.
+Otherwise your configuration will not be applied to new PowerShell sessions.
 
 ## See also
 
