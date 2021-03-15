@@ -14,9 +14,8 @@ It is developed here starting from v0.9.0 (coming soon).
 [q2]: docs/q2.png "Parameter completion"
 [q3]: docs/q3.png "Path completion"
 
-| | | |
-|-|-|-|
 | ![command][q1] | ![parameter][q2] | ![path][q3] |
+|-|-|-|
 
 ## Installation
 
