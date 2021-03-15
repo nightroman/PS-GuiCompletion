@@ -1,7 +1,5 @@
-These files are lifted as verbatim as possible from the powertab source code.
+These files are lifted from the PowerTab source code.
 
-default.config.ps1 is new and creates the configuration object that PowerTab's code expects.
+`ConsoleLib.ps1` contains the UI rendering code.
 
-TabExpansionUtil.ps1 is stripped way down to only the functions that are used.
-
-ConsoleLib.ps1 contains the UI rendering code.  In particular, `Out-ConsoleList` renders a completion list.
+`default.config.ps1` is new and creates the configuration object that PowerTab code expects.
