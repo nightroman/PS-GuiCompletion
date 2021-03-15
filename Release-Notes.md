@@ -2,9 +2,8 @@
 
 ## v0.9.0 (coming soon)
 
-This release is the result of many performance improvement and design changes
-made rather long time ago. Now they are difficult to explain in user friendly
-form. The below lists are just commit summaries.
+This release contains many performance improvements and design changes made
+long time ago, difficult to explain in user friendly form. Commit summaries:
 
 **Part1**
 
@@ -18,9 +17,9 @@ form. The below lists are just commit summaries.
 - Fix `Right Arrow` wrong index and out-of-range
 - Treat `*` and `?` in filter as wildcards
 - Fix strict mode failures
-- Use `ShiftPressed` flag. Remove not used `Get-KeyState`.
+- Use `ShiftPressed` flag, remove not used `Get-KeyState`
 - Cache `$Colors` for faster access and shorter code
-- Use `MinimumTextWidth` and rework `Get-ContentSize`: avoid status line wider than list; completion menus normally have some limit (ISE)
+- Use `MinimumTextWidth` and rework `Get-ContentSize`
 - Use `CompletionResult` as is, retire `New-TabItem`
 
 **Part2**
@@ -32,14 +31,14 @@ form. The below lists are just commit summaries.
 - Retire `ReturnWord`, `LastWord`
 - Show the current item count in status
 - Remove not used `$PowerTabFileSystemMode`
-- Fix `Page Down` / `Page Up` with not first / last selected. Review `Move-Selection`.
+- Fix `Page Down` / `Page Up` with not first / last selected, review `Move-Selection`
 - Use `AllowCtrlC` in `ReadKey` to avoid fatal breaks
 - Infer and use common prefix
-- Add margin spaces to filter and status
+- Add spaces to filter and status
 - Use one `ReadKey`
 - Simplify `Above` / `Below`
 - Remove not used `TabExpansionUtil.ps1`
-- Remove `HelpInfoURI` from the manifest. It make problems for `Update-Help`.
+- Remove `HelpInfoURI` from the manifest, problem for `Update-Help`
 
 ## v0.8.1
 
