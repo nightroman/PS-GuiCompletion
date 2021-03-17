@@ -1,5 +1,16 @@
 # GuiCompletion Release Notes
 
+## v0.10.0
+
+The exported variable `$GuiCompletionConfig` is read only (you can change its
+properties but cannot set the variable) and represented by a custom object
+instead of hashtable. This reduces chances of misusing.
+
+Retired the `SpaceComplete` option. The space character is included to
+`CustomCompletionChars` by default.
+
+Minor performance tweaks.
+
 ## v0.9.0
 
 This release contains changes made long time ago, now difficult to explain in

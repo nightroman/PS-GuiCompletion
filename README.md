@@ -43,6 +43,32 @@ For more advanced scenarios, you can call the relevant PSReadLine commands direc
 Add these configuration commands to your PowerShell profile.
 Otherwise your configuration will not be applied to new PowerShell sessions.
 
+## Options
+
+The exported variable `$GuiCompletionConfig` provides the following default
+console colors and options. They may be changed in a profile or interactively.
+
+```
+Colors                : @{TextColor=DarkMagenta;
+                        BackColor=White;
+                        SelectedTextColor=White;
+                        SelectedBackColor=DarkMagenta;
+                        BorderTextColor=DarkMagenta;
+                        BorderBackColor=White;
+                        BorderColor=DarkMagenta;
+                        FilterColor=DarkMagenta}
+DoubleBorder          : True
+MinimumTextWidth      : 25
+FastScrollItemCount   : 10
+AutoReturnSingle      : True
+DotComplete           : True
+AutoExpandOnDot       : True
+BackSlashComplete     : True
+AutoExpandOnBackSlash : True
+CustomComplete        : True
+CustomCompletionChars :  ()[]:
+```
+
 ## See also
 
 - [GuiCompletion Release Notes](https://github.com/nightroman/PS-GuiCompletion/blob/main/Release-Notes.md)

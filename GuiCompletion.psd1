@@ -1,6 +1,6 @@
 @{
 	RootModule = 'GuiCompletion.psm1'
-	ModuleVersion = '0.9.0'
+	ModuleVersion = '0.10.0'
 	GUID = 'ad14a77f-27b3-4c8e-a54e-d603b15adcb8'
 	Author = 'Roman Kuzmin'
 	Description = 'GUI-style tab-completion menu for PowerShell.'

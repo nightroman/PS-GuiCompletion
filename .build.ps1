@@ -22,16 +22,16 @@ task version {
 # Synopsis: Make the module folder.
 task module version, {
 	remove z
-	$null = mkdir z\$ModuleName\powertab
+	$null = mkdir z\$ModuleName\scripts
 	Copy-Item -Destination z\$ModuleName $(
 		'README.md'
 		'GuiCompletion.psd1'
 		'GuiCompletion.psm1'
 		'LICENSE'
 	)
-	Copy-Item -Destination z\$ModuleName\powertab $(
-		'powertab\ConsoleLib.ps1'
-		'powertab\default-config.ps1'
+	Copy-Item -Destination z\$ModuleName\scripts $(
+		'scripts\ConsoleLib.ps1'
+		'scripts\GuiCompletionConfig.ps1'
 	)
 }
 

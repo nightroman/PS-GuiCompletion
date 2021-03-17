@@ -1,8 +1,8 @@
 $ErrorActionPreference = 'Stop'
 $UI = $Host.UI.RawUI
 
-. $PSScriptRoot\powertab\default-config.ps1
-. $PSScriptRoot\powertab\ConsoleLib.ps1
+. $PSScriptRoot\scripts\ConsoleLib.ps1
+. $PSScriptRoot\scripts\GuiCompletionConfig.ps1
 
 function Install-GuiCompletion($Key = 'Ctrl+Spacebar') {
 	Set-PSReadLineKeyHandler -Key $Key -ScriptBlock {

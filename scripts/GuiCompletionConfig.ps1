@@ -1,5 +1,5 @@
-$GuiCompletionConfig = @{
-	Colors = @{
+New-Variable -Name GuiCompletionConfig -Option ReadOnly -Value ([PSCustomObject]@{
+	Colors = ([PSCustomObject]@{
 		TextColor = 'DarkMagenta'
 		BackColor = 'White'
 		SelectedTextColor = 'White'
@@ -9,7 +9,7 @@ $GuiCompletionConfig = @{
 		BorderBackColor = 'White'
 		BorderColor = 'DarkMagenta'
 		FilterColor = 'DarkMagenta'
-	}
+	})
 
 	DoubleBorder = $true
 	MinimumTextWidth = 25
@@ -23,7 +23,5 @@ $GuiCompletionConfig = @{
 	AutoExpandOnBackSlash = $true
 
 	CustomComplete = $true
-	CustomCompletionChars = '()[]:'
-
-	SpaceComplete = $true
-}
+	CustomCompletionChars = ' ()[]:'
+})
