@@ -21,7 +21,12 @@ function Invoke-GuiCompletion {
 		}
 
 		# get completion items
-		$completion = TabExpansion2 $buffer $cursorPosition
+		try {
+			$completion = TabExpansion2 $buffer $cursorPosition
+		}
+		catch {
+			return
+		}
 		if (!$completion.CompletionMatches) {
 			return
 		}

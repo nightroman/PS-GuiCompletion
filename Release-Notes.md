@@ -1,5 +1,10 @@
 # GuiCompletion Release Notes
 
+## v0.10.1
+
+[#3](https://github.com/nightroman/PS-GuiCompletion/issues/3)
+Catch and ignore errors in `TabExpansion2`. Errors are still collected in `$Error`.
+
 ## v0.10.0
 
 The exported variable `$GuiCompletionConfig` is read only (you can change its
