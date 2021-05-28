@@ -61,6 +61,7 @@ DoubleBorder          : True
 MinimumTextWidth      : 25
 FastScrollItemCount   : 10
 AutoReturnSingle      : True
+ScrollDisplayDown     : False
 DotComplete           : True
 AutoExpandOnDot       : True
 BackSlashComplete     : True
@@ -68,6 +69,10 @@ AutoExpandOnBackSlash : True
 CustomComplete        : True
 CustomCompletionChars :  ()[]:
 ```
+
+`ScrollDisplayDown` tells to scroll the display if necessary in order to show
+the completion list below the caret. This mode works around redrawing issues
+after the list shown above the caret, in some environments.
 
 ## See also
 

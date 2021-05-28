@@ -15,6 +15,7 @@ New-Variable -Name GuiCompletionConfig -Option ReadOnly -Value ([PSCustomObject]
 	MinimumTextWidth = 25
 	FastScrollItemCount = 10
 	AutoReturnSingle = $true
+	ScrollDisplayDown = $false
 
 	DotComplete = $true
 	AutoExpandOnDot = $true

@@ -1,5 +1,9 @@
 # GuiCompletion Release Notes
 
+## v0.11.0
+
+Add the option `ScrollDisplayDown` to work around [#5](https://github.com/nightroman/PS-GuiCompletion/issues/5).
+
 ## v0.10.1
 
 [#3](https://github.com/nightroman/PS-GuiCompletion/issues/3)

@@ -309,6 +309,8 @@ function New-BufferCellArray(
 
 function Parse-List(
 	[System.Drawing.Size]$Size
+	,
+	[switch]$NoScroll
 )
 {
 	$WindowPosition = $UI.WindowPosition
@@ -318,11 +320,16 @@ function Parse-List(
 	$CursorOffset = $Cursor.Y - $WindowPosition.Y
 	$CursorOffsetBottom = $WindowSize.Height - $CursorOffset
 
-	# vertical placement and size
+	# vertical size and placement
 	$ListHeight = $Size.Height + 2
-
 	$Above = ($CursorOffset -gt $Center) -and ($ListHeight -ge $CursorOffsetBottom)
 	if ($Above) {
+		if (!$NoScroll -and $GuiCompletionConfig.ScrollDisplayDown) {
+			$nScroll = [Math]::Min($CursorOffset - $Center, $ListHeight - $CursorOffsetBottom + 1)
+			[Microsoft.PowerShell.PSConsoleReadLine]::Insert("`n" * ($CursorOffsetBottom + $nScroll))
+			[Microsoft.PowerShell.PSConsoleReadLine]::Undo()
+			return Parse-List $Size -NoScroll
+		}
 		$MaxListHeight = $CursorOffset - 1
 		if ($MaxListHeight -lt $ListHeight) {$ListHeight = $MaxListHeight}
 		$Y = $CursorOffset - $ListHeight
@@ -351,8 +358,7 @@ function Parse-List(
 	}
 
 	# output
-	New-Object System.Management.Automation.PSObject -Property @{
-		Orientation = $Placement
+	@{
 		TopX = $X
 		TopY = $Y
 		ListHeight = $ListHeight
