@@ -1,5 +1,12 @@
 # GuiCompletion Release Notes
 
+## v0.11.1
+
+`ScrollDisplayDown` default is true, to make GuiCompletion working in more terminals.
+To turn this feature off, use
+
+    $GuiCompletionConfig.ScrollDisplayDown = $false
+
 ## v0.11.0
 
 Add the option `ScrollDisplayDown` to work around [#5](https://github.com/nightroman/PS-GuiCompletion/issues/5).

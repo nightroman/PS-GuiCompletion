@@ -1,6 +1,6 @@
 @{
 	RootModule = 'GuiCompletion.psm1'
-	ModuleVersion = '0.11.0'
+	ModuleVersion = '0.11.1'
 	GUID = 'ad14a77f-27b3-4c8e-a54e-d603b15adcb8'
 	Author = @('Roman Kuzmin', 'Andrew Bradley')
     Copyright = '(c) Roman Kuzmin, Andrew Bradley'
@@ -14,7 +14,7 @@
 
 	PrivateData = @{
 		PSData = @{
-			Tags = @('TabExpansion')
+			Tags = @('TabExpansion', 'PSReadLine')
 			ProjectUri = 'https://github.com/nightroman/PS-GuiCompletion'
 			LicenseUri = 'https://github.com/nightroman/PS-GuiCompletion/blob/main/LICENSE'
 			ReleaseNotes = 'https://github.com/nightroman/PS-GuiCompletion/blob/main/Release-Notes.md'
