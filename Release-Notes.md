@@ -1,5 +1,9 @@
 # GuiCompletion Release Notes
 
+## v1.0.0
+
+Fix occasional garbage on paging and scrolling in some terminals.
+
 ## v0.11.1
 
 `ScrollDisplayDown` default is true, to make GuiCompletion working in more terminals.

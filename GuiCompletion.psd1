@@ -1,6 +1,6 @@
 @{
 	RootModule = 'GuiCompletion.psm1'
-	ModuleVersion = '0.11.1'
+	ModuleVersion = '1.0.0'
 	GUID = 'ad14a77f-27b3-4c8e-a54e-d603b15adcb8'
 	Author = @('Roman Kuzmin', 'Andrew Bradley')
     Copyright = '(c) Roman Kuzmin, Andrew Bradley'

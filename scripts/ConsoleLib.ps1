@@ -410,6 +410,7 @@ function New-ConsoleList(
 		SelectedItem = 0
 		SelectedLine = 1
 		Items = $Content
+		Lines = $Lines
 		FirstItem = 0
 		LastItem = $Listconfig.ListHeight - 3
 		MaxItems = $Listconfig.MaxItems
@@ -516,13 +517,13 @@ function Move-Selection(
 		$LinePosition.X += 1
 		if ($One -eq 1) {
 			$LinePosition.Y += $Line - ($Count - $One)
-			$LineBuffer = New-BufferCellArray ($ListHandle.Items[($SelectedItem - ($Count - $One)) .. $SelectedItem] | .{process{$_.ListItemText}}) $Colors.TextColor $Colors.BackColor
+			$ItemLines = $ListHandle.Lines[($SelectedItem - ($Count - $One)) .. $SelectedItem]
 		}
 		else {
 			$LinePosition.Y += 1
-			$LineBuffer = New-BufferCellArray ($ListHandle.Items[($SelectedItem..($SelectedItem - ($Count - $One)))] | .{process{$_.ListItemText}}) $Colors.TextColor $Colors.BackColor
+			$ItemLines = $ListHandle.Lines[($SelectedItem..($SelectedItem - ($Count - $One)))]
 		}
-		$LineHandle = New-Buffer $LinePosition $LineBuffer
+		$null = New-Buffer $LinePosition (New-BufferCellArray $ItemLines $Colors.TextColor $Colors.BackColor)
 		Set-Selection 1 $Line ($ListHandle.ListConfig.ListWidth - 3) $Colors.SelectedTextColor $Colors.SelectedBackColor
 	}
 	else {

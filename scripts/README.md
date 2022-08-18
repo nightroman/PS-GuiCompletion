@@ -1,5 +1,6 @@
-# Console functions, config, test
+# Console functions, config, tests
 
-- [ConsoleLib.ps1](ConsoleLib.ps1) contains UI rendering code lifted from PowerTab
+- [ConsoleLib.ps1](ConsoleLib.ps1) - UI rendering code similar to PowerTab
 - [GuiCompletionConfig.ps1](GuiCompletionConfig.ps1) - configuration similar to PowerTab
-- [test-env.ps1](test-env.ps1) starts a powershell session with GuiCompletion
+- [Test-v5.ps1](Test-v5.ps1) - vanilla powershell with GuiCompletion
+- [Test-v7.ps1](Test-v7.ps1) - vanilla pwsh with GuiCompletion
