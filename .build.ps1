@@ -14,7 +14,7 @@ task clean {
 # Synopsis: Set $script:Version from Release-Notes.
 task version {
 	($script:Version = switch -Regex -File Release-Notes.md {'##\s+v(\d+\.\d+\.\d+)\s*(.*)' {$Matches[1]; break}})
-	$psd1 = Import-PowerShellDataFile GuiCompletion.psd1
+	$psd1 = Invoke-Expression (Get-Content GuiCompletion.psd1 -Raw)
 	equals $script:Version $psd1.ModuleVersion
 	if ($$ = $Matches[2]) {Write-Warning $$}
 }
