@@ -190,14 +190,11 @@ function Get-ConsoleList(
 }
 
 function New-Box(
-	[System.Drawing.Size]
-	$Size
+	[System.Drawing.Size]$Size
 	,
-	[System.ConsoleColor]
-	$ForegroundColor = $UI.ForegroundColor
+	[System.ConsoleColor]$ForegroundColor = $UI.ForegroundColor
 	,
-	[System.ConsoleColor]
-	$BackgroundColor = $UI.BackgroundColor
+	[System.ConsoleColor]$BackgroundColor = $UI.BackgroundColor
 )
 {
 	$HorizontalDouble = [string][char]9552
@@ -242,8 +239,22 @@ function Get-ContentSize(
 	[object[]]$Content
 )
 {
-	$MaxWidth = ($Content | .{process{$_.ListItemText.Length} end{$GuiCompletionConfig.MinimumTextWidth}} | Measure-Object -Maximum).Maximum
-	New-Object System.Drawing.Size $MaxWidth, $Content.Length
+	$maxWidth = $GuiCompletionConfig.MinimumTextWidth
+	$end = $Content.Length - 1
+	for($$ = 0; $$ -le $end; ++$$) {
+		$item = $Content[$$]
+		$text = $_.ListItemText
+		if (($$ -gt 0 -and $text -eq $Content[$$ - 1].ListItemText) -or ($$ -lt $end -and $text -eq $Content[$$ + 1].ListItemText)) {
+			$w = $item.CompletionText.Length
+		}
+		else {
+			$w = $item.ListItemText.Length
+		}
+		if ($maxWidth -lt $w) {
+			$maxWidth = $w
+		}
+	}
+	New-Object System.Drawing.Size $maxWidth, $Content.Length
 }
 
 function New-Position(
@@ -294,14 +305,11 @@ function New-StatusBufferCellArray(
 }
 
 function New-BufferCellArray(
-	[string[]]
-	$Content
+	[string[]]$Content
 	,
-	[System.ConsoleColor]
-	$ForegroundColor = $UI.ForegroundColor
+	[System.ConsoleColor]$ForegroundColor = $UI.ForegroundColor
 	,
-	[System.ConsoleColor]
-	$BackgroundColor = $UI.BackgroundColor
+	[System.ConsoleColor]$BackgroundColor = $UI.BackgroundColor
 )
 {
 	, $UI.NewBufferCellArray($Content, $ForegroundColor, $BackgroundColor)
@@ -368,56 +376,61 @@ function Parse-List(
 }
 
 function New-ConsoleList(
-	[object[]]
-	$Content
+	[object[]]$Content
 	,
-	[System.ConsoleColor]
-	$BorderForegroundColor
+	[System.ConsoleColor]$BorderForegroundColor
 	,
-	[System.ConsoleColor]
-	$BorderBackgroundColor
+	[System.ConsoleColor]$BorderBackgroundColor
 	,
-	[System.ConsoleColor]
-	$ContentForegroundColor
+	[System.ConsoleColor]$ContentForegroundColor
 	,
-	[System.ConsoleColor]
-	$ContentBackgroundColor
+	[System.ConsoleColor]$ContentBackgroundColor
 )
 {
-	$Size = Get-ContentSize $Content
-	$MinWidth = ([string]$Content.Count).Length * 4 + 7
-	if ($Size.Width -lt $MinWidth) {$Size.Width = $MinWidth}
-	$Lines = @(foreach($Item in $Content) {"$($Item.ListItemText) ".PadRight($Size.Width + 2)})
-	$ListConfig = Parse-List $Size
-	$BoxSize = New-Object System.Drawing.Size $ListConfig.ListWidth, $ListConfig.ListHeight
-	$Box = New-Box $BoxSize $BorderForegroundColor $BorderBackgroundColor
+	$size = Get-ContentSize $Content
+	$minWidth = ([string]$Content.Count).Length * 4 + 7
+	if ($size.Width -lt $minWidth) {$size.Width = $minWidth}
+	$lines = @(
+		$end = $Content.Length - 1
+		for($$ = 0; $$ -le $end; ++$$) {
+			$item = $Content[$$]
+			$text = $item.ListItemText
+			if (($$ -gt 0 -and $text -eq $Content[$$ - 1].ListItemText) -or ($$ -lt $end -and $text -eq $Content[$$ + 1].ListItemText)) {
+				$text = $item.CompletionText
+			}
+			"$text ".PadRight($size.Width + 2)
+		}
+	)
+	$listConfig = Parse-List $size
+	$boxSize = New-Object System.Drawing.Size $listConfig.ListWidth, $listConfig.ListHeight
+	$box = New-Box $boxSize $BorderForegroundColor $BorderBackgroundColor
 
-	$Position = New-Position $ListConfig.TopX $ListConfig.TopY
-	$BoxHandle = New-Buffer $Position $Box
+	$pos = New-Position $listConfig.TopX $listConfig.TopY
+	$BoxHandle = New-Buffer $pos $box
 
 	# place content
-	$Position.X += 1
-	$Position.Y += 1
-	$ContentBuffer = New-BufferCellArray ($Lines[0..($ListConfig.ListHeight - 3)]) $ContentForegroundColor $ContentBackgroundColor
-	$ContentHandle = New-Buffer $Position $ContentBuffer
-	$Handle = New-Object System.Management.Automation.PSObject -Property @{
-		Position = New-Position $ListConfig.TopX $ListConfig.TopY
-		ListConfig = $ListConfig
-		ContentSize = $Size
-		BoxSize = $BoxSize
+	$pos.X += 1
+	$pos.Y += 1
+	$contentBuffer = New-BufferCellArray ($lines[0..($listConfig.ListHeight - 3)]) $ContentForegroundColor $ContentBackgroundColor
+	$contentHandle = New-Buffer $pos $contentBuffer
+	$handle = New-Object System.Management.Automation.PSObject -Property @{
+		Position = New-Position $listConfig.TopX $listConfig.TopY
+		ListConfig = $listConfig
+		ContentSize = $size
+		BoxSize = $boxSize
 		Box = $BoxHandle
-		Content = $ContentHandle
+		Content = $contentHandle
 		SelectedItem = 0
 		SelectedLine = 1
 		Items = $Content
-		Lines = $Lines
+		Lines = $lines
 		FirstItem = 0
-		LastItem = $Listconfig.ListHeight - 3
-		MaxItems = $Listconfig.MaxItems
+		LastItem = $listConfig.ListHeight - 3
+		MaxItems = $listConfig.MaxItems
 	}
-	Add-Member -InputObject $Handle -MemberType ScriptMethod -Name Clear -Value {$this.Box.Clear()}
-	Add-Member -InputObject $Handle -MemberType ScriptMethod -Name Show -Value {$this.Box.Show(); $this.Content.Show()}
-	$Handle
+	Add-Member -InputObject $handle -MemberType ScriptMethod -Name Clear -Value {$this.Box.Clear()}
+	Add-Member -InputObject $handle -MemberType ScriptMethod -Name Show -Value {$this.Box.Show(); $this.Content.Show()}
+	$handle
 }
 
 function Move-List(
@@ -449,11 +462,9 @@ function Set-Selection(
 	,
 	[int]$Width
 	,
-	[System.ConsoleColor]
-	$ForegroundColor
+	[System.ConsoleColor]$ForegroundColor
 	,
-	[System.ConsoleColor]
-	$BackgroundColor
+	[System.ConsoleColor]$BackgroundColor
 )
 {
 	$Position = $ListHandle.Position

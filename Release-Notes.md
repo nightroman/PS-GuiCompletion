@@ -1,5 +1,11 @@
 # GuiCompletion Release Notes
 
+## v1.0.1
+
+Use `CompletionText` instead of `ListItemText` if adjacent items are same.
+E.g. on completing `[file` instead of two items `File` show these items:
+`System.Net.WebRequestMethods+File` and `System.IO.File`.
+
 ## v1.0.0
 
 Fix occasional garbage on paging and scrolling in some terminals.
